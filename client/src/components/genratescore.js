@@ -6,6 +6,35 @@ import { Link } from "react-router-dom";
 const GenrateScore =()=>{
 
     const  [ctc,setctc]=useState(0);
+    
+   const score=   ( value)=>{
+   
+    if(value<=100000){
+      return 300;
+     }
+     else if(value<=300000){
+        return 350;
+     }
+     else if(value<=500000){
+        return 450;
+     }
+     else if(value<=600000){
+        return 500;
+     }
+     else if(value<=700000){
+         return 550;
+     }
+     else if(value<=1000000){
+         return 600;
+     }
+     else if(value<=1500000){
+       return 650;
+     }
+     else {
+         return 700;
+     }
+ 
+ }
     const response=axios.get('/api/user/profile',{
         headers:{
             'Content-Type':'application/json',
@@ -13,7 +42,7 @@ const GenrateScore =()=>{
         }
     }).then((res,err)=>{
         const json=  res.data;
-         setctc(json.ctc);
+         setctc(score(json.ctc));
     //  console.log(ctc)
 
     }).catch((err)=>{
